@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>message-next-step - decide whether to reply now, wait, clarify, call, or let it go</title>
+    <meta
+      name="description"
+      content="Free deterministic incoming-message checker for dating, recruiting, workplace, client, support, and family threads when you need one clean next move instead of another open-ended AI chat."
+    />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="theme-color" content="#09131b" />
+    <link rel="canonical" href="https://tells.voiddo.com/message-next-step/" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="message-next-step - decide whether to reply now, wait, clarify, call, or let it go"
+    />
+    <meta
+      property="og:description"
+      content="Deterministic next-step checker for one incoming message when the real question is what to do right now."
+    />
+    <meta property="og:url" content="https://tells.voiddo.com/message-next-step/" />
+    <meta property="og:site_name" content="tells by vøiddo" />
+    <meta property="og:image" content="https://tells.voiddo.com/og-card.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="message-next-step - decide whether to reply now, wait, clarify, call, or let it go"
+    />
+    <meta
+      name="twitter:description"
+      content="Free deterministic incoming-message checker for the moment after you read the text and need one clean next move."
+    />
+    <meta name="twitter:image" content="https://tells.voiddo.com/og-card.png" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "message-next-step",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web",
+        "isAccessibleForFree": true,
+        "url": "https://tells.voiddo.com/message-next-step/",
+        "description": "Free deterministic incoming-message checker for deciding whether to reply now, wait, ask one clarifier, move to a call, or let it go.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "creator": {
+          "@type": "Organization",
+          "name": "vøiddo",
+          "url": "https://voiddo.com/"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "vøiddo",
+          "url": "https://voiddo.com/"
+        },
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "tells",
+          "url": "https://tells.voiddo.com/"
+        },
+        "featureList": [
+          "Deterministic incoming-message next-step check",
+          "Directness, ambiguity, pressure, escalation, avoidance, and call-shift scoring",
+          "Context-ready for dating, recruiter, workplace, client, support, and family threads",
+          "Direct handoff into tells Deep Dive when one message becomes a repeating pattern"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand-lockup">
+          <span class="brand-mark">m</span>
+          <div>
+            <p class="eyebrow">vøiddo micro-tool</p>
+            <h1>message-next-step</h1>
+          </div>
+        </div>
+        <div class="topbar-links">
+          <a class="quiet-link" href="./compare-chatgpt-gemini.html">vs ChatGPT / Gemini</a>
+          <a
+            class="quiet-link"
+            href="https://tells.voiddo.com/signal-toolkit/?ref=message-next-step-top"
+            >see the toolkit</a
+          >
+        </div>
+      </header>
+
+      <main>
+        <section class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">incoming message triage</p>
+            <h2>Decide what this message actually earns right now.</h2>
+            <p class="lede">
+              <code>message-next-step</code> is a deterministic first pass for one narrow moment:
+              you read the message, and now you need to decide whether to reply now, wait, ask one
+              concrete question, move to a call, or let it go.
+            </p>
+            <div class="hero-points">
+              <span>zero API</span>
+              <span>same input, same call</span>
+              <span>dating, recruiter, workplace, client, support, family</span>
+            </div>
+          </div>
+
+          <section class="console-panel" aria-labelledby="checker-title">
+            <div class="panel-head">
+              <p class="eyebrow">live checker</p>
+              <h3 id="checker-title">Paste the incoming message</h3>
+            </div>
+
+            <div class="example-row" role="tablist" aria-label="message-next-step examples">
+              <button type="button" class="example-pill active" data-example="direct">direct ask</button>
+              <button type="button" class="example-pill" data-example="vague">vague maybe</button>
+              <button type="button" class="example-pill" data-example="heated">heated push</button>
+            </div>
+
+            <label class="field-label" for="message-input">Incoming message</label>
+            <textarea id="message-input" spellcheck="false">Can you confirm by Friday whether you want me to send the draft?</textarea>
+
+            <div class="action-row">
+              <button id="analyze-button" type="button">read the message</button>
+              <button id="clear-button" class="ghost-button" type="button">clear</button>
+            </div>
+
+            <div class="status-row">
+              <p id="decision-chip" class="decision-chip">reply now</p>
+              <p id="counter-line" class="counter-line">12 words · 1 question</p>
+            </div>
+
+            <section class="decision-panel" aria-live="polite">
+              <div class="panel-subhead">
+                <p class="eyebrow">posture</p>
+                <p id="posture-chip" class="posture-chip">direct</p>
+              </div>
+              <p id="summary-line" class="decision-summary"></p>
+              <ul id="why-list" class="decision-reasons"></ul>
+            </section>
+
+            <div class="meter-grid" id="meter-grid" aria-live="polite"></div>
+
+            <section class="suggestions-panel">
+              <div class="panel-subhead">
+                <p class="eyebrow">what to send or do next</p>
+                <a
+                  id="primary-upgrade-link"
+                  class="signal-link"
+                  href="https://tells.voiddo.com/deep-dive/?ref=message-next-step-primary"
+                  >use the $19 Deep Dive</a
+                >
+              </div>
+              <ol id="prompts-list"></ol>
+            </section>
+          </section>
+        </section>
+
+        <section class="examples-strip" aria-labelledby="examples-title">
+          <div class="section-head">
+            <p class="eyebrow">what it scores</p>
+            <h3 id="examples-title">Directness, ambiguity, pressure, heat, avoidance, and call-shift risk</h3>
+          </div>
+          <div class="signal-grid">
+            <article class="signal-panel">
+              <p class="eyebrow">reply now</p>
+              <h4>Use when the message already names a concrete next step.</h4>
+              <p>If there is enough specificity and not much ambiguity, the fastest good move is often the simplest one.</p>
+            </article>
+            <article class="signal-panel">
+              <p class="eyebrow">ask one question</p>
+              <h4>Use when the wording is too blurry to reward with optimism.</h4>
+              <p>This keeps you from doing free emotional labor around timing, seriousness, or intent they did not state.</p>
+            </article>
+            <article class="signal-panel">
+              <p class="eyebrow">call shift</p>
+              <h4>Use when the thread has too much heat or compression for more text.</h4>
+              <p>If blame, urgency, and exclamation marks are carrying the message, a cleaner channel is often the real next step.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="story-grid">
+          <article class="story-panel">
+            <p class="eyebrow">good use</p>
+            <h3>Use it when the blocker is the move, not the whole meaning.</h3>
+            <p>
+              This is for recruiter loops, client or support messages, dating texts, and family
+              friction where the question is what to do next on this exact message.
+            </p>
+          </article>
+          <article class="story-panel">
+            <p class="eyebrow">bad use</p>
+            <h3>It does not pretend one message explains the whole relationship.</h3>
+            <p>
+              This page does not do therapy, lie detection, or big personal verdicts. If the real
+              issue is the recurring person or thread, the next step is <code>tells</code>.
+            </p>
+          </article>
+          <article class="story-panel">
+            <p class="eyebrow">privacy</p>
+            <h3>No stored messages. No model calls. No login wall.</h3>
+            <p>
+              Everything runs in the page. Refresh and the text is gone. This is a quick private
+              pass, not another inbox platform.
+            </p>
+          </article>
+        </section>
+
+        <section class="lane-band" aria-labelledby="lane-title">
+          <div class="section-head lane-head">
+            <div>
+              <p class="eyebrow">best next free exits</p>
+              <h3 id="lane-title">Switch tools when the next-step question turns into a different one</h3>
+            </div>
+            <a
+              class="signal-link"
+              href="https://tells.voiddo.com/signal-toolkit/?ref=message-next-step-lane-head"
+              >open the toolkit</a
+            >
+          </div>
+          <div class="lane-grid">
+            <article class="lane-card">
+              <p class="eyebrow">the yes sounds warm but weak</p>
+              <h4><code>soft-yes-or-no</code> is better when the real question is whether this is genuine intent or a polite stall.</h4>
+              <p>
+                Keep this checker for the move. Use <code>soft-yes-or-no</code> when the incoming
+                text sounds positive enough to tempt you, but still not concrete enough to trust.
+              </p>
+              <div class="lane-actions">
+                <a
+                  class="primary-link"
+                  href="https://tells.voiddo.com/soft-yes-or-no/?ref=message-next-step-lane-soft"
+                  >open soft-yes-or-no</a
+                >
+              </div>
+            </article>
+            <article class="lane-card">
+              <p class="eyebrow">you already wrote the reply</p>
+              <h4><code>replytone</code> is better when the decision is made and now the wording itself needs a pressure check.</h4>
+              <p>
+                Decide the action here, then move into <code>replytone</code> when you want to
+                know whether the draft sounds warm, clear, or too forceful.
+              </p>
+              <div class="lane-actions">
+                <a
+                  class="primary-link"
+                  href="https://tells.voiddo.com/replytone/?ref=message-next-step-lane-replytone"
+                  >open replytone</a
+                >
+              </div>
+            </article>
+            <article class="lane-card featured">
+              <p class="eyebrow">the thread keeps sliding anyway</p>
+              <h4><code>raincheck-or-run</code> is better when the message mostly turns into delay, reschedule, or no-new-time loops.</h4>
+              <p>
+                Use this checker for the immediate call. Use <code>raincheck-or-run</code> once
+                the pattern becomes repeated cancellations, "maybe later", or soft fade logistics.
+              </p>
+              <div class="lane-actions">
+                <a
+                  class="primary-link"
+                  href="https://tells.voiddo.com/raincheck-or-run/?ref=message-next-step-lane-raincheck"
+                  >open raincheck-or-run</a
+                >
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="cta-band">
+          <div>
+            <p class="eyebrow">paid next step</p>
+            <h3>When the problem stops being one message, stop using one-message tools.</h3>
+            <p>
+              <code>message-next-step</code> is the narrow free door. <code>tells</code> is the
+              paid step when one recurring person, loaded thread, or repeated dynamic keeps pulling
+              you back in.
+            </p>
+          </div>
+          <div class="cta-actions">
+            <a class="primary-link" href="https://tells.voiddo.com/deep-dive/?ref=message-next-step-bottom">deep dive · $19 once</a>
+            <a class="quiet-link" href="https://tells.voiddo.com/signal-toolkit/?ref=message-next-step-toolkit">all free checks</a>
+            <a class="quiet-link" href="https://tells.voiddo.com/?ref=message-next-step-starter">starter · $14.99/mo</a>
+            <a class="quiet-link" href="https://tells.voiddo.com/for-coaches/?ref=message-next-step-practitioner">practitioner · $99.99/mo</a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer-note">
+        Built by vøiddo — a small studio shipping AI-flavoured products, free dev tools, Chrome
+        extensions and weird browser games.
+      </footer>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
