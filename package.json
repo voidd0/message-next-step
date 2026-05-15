@@ -1,6 +1,6 @@
 {
   "name": "@v0idd0/message-next-step",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "message-next-step — free deterministic incoming-message checker and faster ChatGPT alternative for dating, workplace, recruiter, client, and family threads when you need to decide whether to reply now, wait, ask one question, move to a call, or let it go.",
   "type": "module",
   "main": "src/index.js",
